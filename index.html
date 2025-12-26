@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Analisis Sorting</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrapper">
+
+    <!-- PANEL KIRI -->
+    <div class="panel">
+        <div class="header">
+            <h2>Analisis Sorting</h2>
+        </div>
+        <hr>
+
+        <label>N =</label>
+        <input type="number" id="n" min="1" placeholder="Masukkan jumlah data">
+
+        <button onclick="proses()">Proses</button>
+
+        <div class="result">
+            <p id="quick">Quick Sort : -</p>
+            <p id="selection">Selection Sort : -</p>
+        </div>
+
+        <p><br>Menggunakan algoritma Selection Sort dan Quick Sort, kita dapat mengurutkan data secara cepat.</p>
+    </div>
+
+    <!-- PANEL TENGAH - ORIGINAL DATA -->
+    <div class="table-box">
+        <h3>Original Data</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody id="dataTable">
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PANEL KANAN ATAS - SELECTION SORT -->
+    <div class="table-box">
+        <h3>Selection Sort Result</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody id="selectionSortTable">
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PANEL KANAN BAWAH - QUICK SORT -->
+    <div class="table-box">
+        <h3>Quick Sort Result</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody id="quickSortTable">
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
