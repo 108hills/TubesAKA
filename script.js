@@ -10,7 +10,7 @@ document.addEventListener('mousemove', (e) => {
 function generateRatings(n) {
     let arr = [];
     for (let i = 0; i < n; i++) {
-        arr.push(Math.floor(Math.random() * 15) + 1);
+        arr.push(Math.floor(Math.random() * 10) + 1);
     }
     return arr;
 }
@@ -99,3 +99,4 @@ function proses() {
     document.getElementById("quick").innerText =
         `Quick Sort : ${quickTime.toFixed(4)} ms`;
 }
+
