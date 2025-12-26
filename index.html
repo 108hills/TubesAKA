@@ -16,15 +16,12 @@
         </div>
         <hr>
 
-        <label>N =</label>
-        <input type="number" id="n" min="1" placeholder="Masukkan jumlah data">
+        <div class="input-row">
+            <label for="n">N =</label>
+            <input type="number" id="n" min="1" placeholder="Masukkan jumlah data">
+        </div>
 
         <button onclick="proses()">Proses</button>
-
-        <div class="result">
-            <p id="quick">Quick Sort : -</p>
-            <p id="selection">Selection Sort : -</p>
-        </div>
 
         <p><br>Menggunakan algoritma Selection Sort dan Quick Sort, kita dapat mengurutkan data secara cepat.</p>
     </div>
@@ -76,6 +73,46 @@
 
 </div>
 
+<!-- PERFORMANCE PANEL -->
+<div class="wrapper" style="margin-top:20px;">
+    <div class="performance-box" id="performanceBox">
+        <h3>Performance Details</h3>
+        <div class="perf-grid">
+            <div class="perf-card" id="selectionPerf">
+                <h4>Selection Sort</h4>
+                <div class="perf-row">
+                    <div class="label">Iteratif</div>
+                    <div class="bar"><div class="bar-fill" id="selIterBar" style="width:0%"></div></div>
+                    <div class="value" id="selIterValue">-</div>
+                </div>
+                <div class="perf-row">
+                    <div class="label">Rekursif</div>
+                    <div class="bar"><div class="bar-fill" id="selRecBar" style="width:0%"></div></div>
+                    <div class="value" id="selRecValue">-</div>
+                </div>
+                <div class="details" id="selDetails"></div>
+            </div>
+
+            <div class="perf-card" id="quickPerf">
+                <h4>Quick Sort</h4>
+                <div class="perf-row">
+                    <div class="label">Iteratif</div>
+                    <div class="bar"><div class="bar-fill" id="qIterBar" style="width:0%"></div></div>
+                    <div class="value" id="qIterValue">-</div>
+                </div>
+                <div class="perf-row">
+                    <div class="label">Rekursif</div>
+                    <div class="bar"><div class="bar-fill" id="qRecBar" style="width:0%"></div></div>
+                    <div class="value" id="qRecValue">-</div>
+                </div>
+                <div class="details" id="qDetails"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="script.js"></script>
+</body>
+</html>
 </body>
 </html>

@@ -6,8 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: radial-gradient(circle 600px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(118, 250, 255, 0.226) 0%, transparent 80%), 
-                linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #311a1a;
     min-height: 100vh;
     padding: 40px 20px;
     transition: background 0.1s ease-out;
@@ -40,7 +39,7 @@ body {
 .panel hr {
     border: none;
     height: 2px;
-    background: linear-gradient(90deg, #667eea, #764ba2);
+    background: linear-gradient(90deg, #c31432, #240b36);
     margin-bottom: 20px;
 }
 
@@ -50,6 +49,24 @@ body {
     font-weight: 600;
     color: #555;
     font-size: 14px;
+}
+
+.input-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.input-row label {
+    margin: 0;
+    width: 30px;
+    font-size: 14px;
+}
+
+.input-row input[type="number"] {
+    flex: 1;
+    margin: 0 !important;
 }
 
 input[type="number"] {
@@ -64,14 +81,14 @@ input[type="number"] {
 
 input[type="number"]:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #c31432;
 }
 
 button {
     width: 100%;
     padding: 12px;
     margin-top: 20px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #c31432, #240b36);
     color: white;
     border: none;
     border-radius: 8px;
@@ -95,7 +112,7 @@ button:active {
     padding: 20px;
     background: #f8f9ff;
     border-radius: 10px;
-    border-left: 4px solid #667eea;
+    border-left: 4px solid #c31432;
 }
 
 .result p {
@@ -112,7 +129,7 @@ p {
 .header h2 {
     text-align: center;
     font-weight: bold;
-    background-image: linear-gradient(135deg, #606c88 0%, #7490ec 100%);
+    background-image: linear-gradient(135deg, #000000 0%, #8d0000 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -143,7 +160,7 @@ p {
     margin-bottom: 15px;
     font-size: 16px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #667eea;
+    border-bottom: 2px solid #c31432;
 }
 
 table {
@@ -154,7 +171,7 @@ table {
 thead {
     position: sticky;
     top: 0;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #c31432, #240b36);
 }
 
 th {
@@ -180,4 +197,81 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
     background: #e8eaff;
     transition: background 0.2s;
+}
+
+/* PANEL BAWAH - PERFORMANCE BOX */
+.performance-box {
+    background: rgba(255,255,255,0.95);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    width: 100%;
+}
+
+.performance-box h3 {
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+.perf-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.perf-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px;
+    border: 1px solid #eef2ff;
+}
+
+.perf-card h4 {
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.perf-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.perf-row .label {
+    width: 70px;
+    font-weight: 600;
+    color: #444;
+}
+
+.bar {
+    flex: 1;
+    height: 12px;
+    background: linear-gradient(90deg, #f1f5ff, #eef2ff);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #c31432, #764ba2);
+    width: 0%;
+    transition: width 500ms ease;
+}
+
+.perf-row .value {
+    width: 80px;
+    text-align: right;
+    font-weight: 600;
+}
+
+.details {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #333;
+    line-height: 1.3;
+}
+
+@media (max-width: 900px) {
+    .perf-grid { grid-template-columns: 1fr; }
 }
