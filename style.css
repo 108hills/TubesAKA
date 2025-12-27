@@ -7,6 +7,15 @@
     box-sizing: border-box;
 }
 
+html {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE dan Edge */
+}
+
+html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #2b2b2b;
@@ -132,7 +141,7 @@ button:active {
 }
 
 /* =====================
-   TABLE PANELS
+   TABLE PANELS (bawah)
    ===================== */
 .table-box {
     background: #1a1a1a;

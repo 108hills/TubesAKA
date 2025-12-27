@@ -102,15 +102,15 @@ function quickSort(arr) {
 // Tampilkan data ke tabel
 function tampilkanData(arr, tableId) {
     let table = document.getElementById(tableId);
-    table.innerHTML = "";
-
-    arr.forEach((val, i) => {
-        let row = `<tr>
-                    <td>${i + 1}</td>
-                    <td>${val}</td>
-                   </tr>`;
-        table.innerHTML += row;
-    });
+    
+    // Buat HTML string dulu
+    let html = '';
+    for (let i = 0; i < arr.length; i++) {
+        html += `<tr><td>${i + 1}</td><td>${arr[i]}</td></tr>`;
+    }
+    
+    // Set innerHTML sekali
+    table.innerHTML = html;
 }
 
 // Proses utama
@@ -123,11 +123,12 @@ function proses() {
 
     // buat datanya
     let data = generateRatings(n);
+    tampilkanData(data, "dataTable");
 
     let dataSelection = [...data];
     let dataQuick = [...data];
 
-    // Adjust iterations based on data size
+    // tentukan iterasi berdasarkan n
     let iterations;
     if (n < 100) {
         iterations = 1000;
@@ -154,7 +155,7 @@ function proses() {
         selectionSort(temp);
     });
 
-    // Selection rekursif (skip for very large data to avoid stack overflow)
+    // selection rekursif
     let selRec;
     if (n <= 5000) {
         selRec = measure(() => {
@@ -166,7 +167,7 @@ function proses() {
             }
         });
     } else {
-        selRec = selIter; // Use iterative time as fallback
+        selRec = selIter;
     }
 
     // Quick iteratif
@@ -175,7 +176,7 @@ function proses() {
         quickSortIterative(temp);
     });
 
-    // Quick rekursif (use optimized version for large data)
+    // quick rekursif
     const qRec = measure(() => {
         const temp = [...data];
         quickSortIterativeForMeasure(temp);
@@ -184,6 +185,10 @@ function proses() {
     // lihatin data yang sudah di sort
     selectionSort(dataSelection);
     dataQuick = quickSortIterative(dataQuick) || dataQuick;
+
+    // Tampilkan hasil sorting
+    tampilkanData(dataSelection, "selectionSortTable");
+    tampilkanData(dataQuick, "quickSortTable");
 
     // persentase bar
     function pct(a, b) { const total = a + b || 1; return (a / total) * 100; }
