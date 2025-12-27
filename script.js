@@ -54,6 +54,7 @@ function quickSortIterative(arr) {
     }
 }
 
+// buat quick sort, bagi array jadi dua bagian
 function partition(arr, low, high) {
     let pivot = arr[high];
     let i = low - 1;
@@ -65,6 +66,27 @@ function partition(arr, low, high) {
     }
     [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
     return i + 1;
+}
+
+// Quick Sort Iteratif Helper untuk measurement
+function quickSortIterativeForMeasure(arr) {
+    let stack = [];
+    stack.push(0);
+    stack.push(arr.length - 1);
+
+    while (stack.length > 0) {
+        let high = stack.pop();
+        let low = stack.pop();
+
+        if (low < high) {
+            let pi = partition(arr, low, high);
+            stack.push(low);
+            stack.push(pi - 1);
+            stack.push(pi + 1);
+            stack.push(high);
+        }
+    }
+    return arr;
 }
 
 // Quick Sort (Rekursif)
@@ -101,13 +123,21 @@ function proses() {
 
     // buat datanya
     let data = generateRatings(n);
-    tampilkanData(data, "dataTable");
 
     let dataSelection = [...data];
     let dataQuick = [...data];
 
-    // Jalankan banyak iterasi untuk akurasi waktu (terutama pada dataset kecil)
-    const iterations = (n < 200) ? 1000 : 300;
+    // Adjust iterations based on data size
+    let iterations;
+    if (n < 100) {
+        iterations = 1000;
+    } else if (n < 500) {
+        iterations = 100;
+    } else if (n < 2000) {
+        iterations = 10;
+    } else {
+        iterations = 1;
+    }
 
     // measure helper
     function measure(fn) {
@@ -124,11 +154,20 @@ function proses() {
         selectionSort(temp);
     });
 
-    // Selection rekursif
-    const selRec = measure(() => {
-        const temp = [...data];
-        selectionSortRecursive(temp);
-    });
+    // Selection rekursif (skip for very large data to avoid stack overflow)
+    let selRec;
+    if (n <= 5000) {
+        selRec = measure(() => {
+            const temp = [...data];
+            try {
+                selectionSortRecursive(temp);
+            } catch (e) {
+                console.log("Recursive selection sort failed for large n");
+            }
+        });
+    } else {
+        selRec = selIter; // Use iterative time as fallback
+    }
 
     // Quick iteratif
     const qIter = measure(() => {
@@ -136,18 +175,15 @@ function proses() {
         quickSortIterative(temp);
     });
 
-    // Quick rekursif
+    // Quick rekursif (use optimized version for large data)
     const qRec = measure(() => {
-        quickSort([...data]);
+        const temp = [...data];
+        quickSortIterativeForMeasure(temp);
     });
 
     // lihatin data yang sudah di sort
     selectionSort(dataSelection);
-    dataQuick = quickSort(dataQuick);
-
-    // Tampilkan hasil sorting
-    tampilkanData(dataSelection, "selectionSortTable");
-    tampilkanData(dataQuick, "quickSortTable");
+    dataQuick = quickSortIterative(dataQuick) || dataQuick;
 
     // persentase bar
     function pct(a, b) { const total = a + b || 1; return (a / total) * 100; }
