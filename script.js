@@ -52,6 +52,7 @@ function quickSortIterative(arr) {
             stack.push(high);
         }
     }
+    return arr;
 }
 
 // buat quick sort, bagi array jadi dua bagian
@@ -66,27 +67,6 @@ function partition(arr, low, high) {
     }
     [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
     return i + 1;
-}
-
-// Quick Sort Iteratif Helper untuk measurement
-function quickSortIterativeForMeasure(arr) {
-    let stack = [];
-    stack.push(0);
-    stack.push(arr.length - 1);
-
-    while (stack.length > 0) {
-        let high = stack.pop();
-        let low = stack.pop();
-
-        if (low < high) {
-            let pi = partition(arr, low, high);
-            stack.push(low);
-            stack.push(pi - 1);
-            stack.push(pi + 1);
-            stack.push(high);
-        }
-    }
-    return arr;
 }
 
 // Quick Sort (Rekursif)
@@ -179,7 +159,7 @@ function proses() {
     // quick rekursif
     const qRec = measure(() => {
         const temp = [...data];
-        quickSortIterativeForMeasure(temp);
+        quickSortIterative(temp);
     });
 
     // lihatin data yang sudah di sort
