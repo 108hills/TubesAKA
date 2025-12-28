@@ -11,3 +11,7 @@ Dikerjakan Oleh:
 **103012400371 -- A. MUH. IMRAN RAMADHAN A**\
 **103012400230 -- AHMAD KADHIM**\
 **103012400386 -- HAMAD DAFALA**
+
+## NOTE(s)
+
+Pada input n >= 10000, fungsi rekursif Selection Sort akan mengalami Stack Overflow dan akan menggunakan Iteratif sebagai fallback.
